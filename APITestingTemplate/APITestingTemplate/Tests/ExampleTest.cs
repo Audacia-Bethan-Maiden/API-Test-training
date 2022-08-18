@@ -20,14 +20,14 @@ namespace APITestingTemplate.Tests
             var bookId = Constants.TheManWhoDiedTwiceBookID;
 
             // Call the get API to get the book by its ID
-            var getBookResponse = Get<BookCommandResult>(bookId, Resources.GetBookById);
+            var getBookResponse = Get<Book>(bookId, Resources.GetBookById);
 
             // Check the status code is ok
             getBookResponse.StatusCode.Should().Be(HttpStatusCode.OK);
 
             // Check that the correct book is returned
-            getBookResponse.Data.Output.Title.Should().Be("The Man Who Died Twice");
-            getBookResponse.Data.Output.Author.Should().Be("Richard Osman");
+            getBookResponse.Data.Title.Should().Be("The Man Who Died Twice");
+            getBookResponse.Data.Author.Should().Be("Richard Osman");
         }
     }
 }

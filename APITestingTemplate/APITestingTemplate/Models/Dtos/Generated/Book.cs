@@ -19,7 +19,5 @@ namespace APITestingTemplate.Models.Dtos
 	    public bool HasEBook { get; set; }
 	    [Newtonsoft.Json.JsonProperty("bookCategoryId", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
 	    public int BookCategoryId { get; set; }
-	    [Newtonsoft.Json.JsonProperty("bookCategory", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-	    public BookCategory BookCategory { get; set; }
-	}
+    }
 }
