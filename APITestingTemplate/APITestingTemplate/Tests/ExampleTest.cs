@@ -21,7 +21,8 @@ namespace APITestingTemplate.Tests
         public void Scenario_1_As_a_user_I_can_get_a_book_by_its_Id()
         {
             // Set the bookId you wish to get
-            var bookId = _addBookFixture.BookData.Id;
+            var bookDetails = _addBookFixture.BookData;
+            var bookId = bookDetails.Id;
 
             // Call the get API to get the book by its ID
             var getBookResponse = Get<GetBookDto>(bookId, Resources.GetBookById);
@@ -29,9 +30,15 @@ namespace APITestingTemplate.Tests
             // Check the status code is ok
             getBookResponse.StatusCode.Should().Be(HttpStatusCode.OK);
 
-            // Check that the correct book is returned
-            getBookResponse.Data.Title.Should().Be("The Man Who Died Twice");
-            getBookResponse.Data.Author.Should().Be("Richard Osman");
+            // Check that the book details are correct
+            getBookResponse.Data.Title.Should().Be(bookDetails.Title);
+            getBookResponse.Data.Author.Should().Be(bookDetails.Author);
+            getBookResponse.Data.Description.Should().Be(bookDetails.Description);
+            getBookResponse.Data.PublishedYear.Should().Be(bookDetails.PublishedYear);
+            getBookResponse.Data.AvailableFrom.Should().Be(bookDetails.AvailableFrom);
+            getBookResponse.Data.BookCategoryId.Should().Be(bookDetails.BookCategoryId);
+            getBookResponse.Data.HasEBook.Should().Be(bookDetails.HasEBook);
+            getBookResponse.Data.Id.Should().Be(bookDetails.Id);
         }
     }
 }
