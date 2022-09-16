@@ -10,5 +10,9 @@ namespace APITestingTemplate.Helpers
     {
         // Book
         public static string GetBookById = "Book";
+
+        public static string AddBook = "Book/Add";
+
+        public static string DeleteBook = "Book/";
     }
 }
