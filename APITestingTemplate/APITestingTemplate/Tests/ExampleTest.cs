@@ -6,7 +6,6 @@ using Audacia.Testing.Api;
 using FluentAssertions;
 using Xunit;
 
-
 namespace APITestingTemplate.Tests
 {
     public class GetBooksTests : ApiTestsBase, IClassFixture<AddBookFixture>
@@ -25,7 +24,7 @@ namespace APITestingTemplate.Tests
             var bookId = _addBookFixture.BookData.Id;
 
             // Call the get API to get the book by its ID
-            var getBookResponse = Get<Book>(bookId, Resources.GetBookById);
+            var getBookResponse = Get<GetBookDto>(bookId, Resources.GetBookById);
 
             // Check the status code is ok
             getBookResponse.StatusCode.Should().Be(HttpStatusCode.OK);
