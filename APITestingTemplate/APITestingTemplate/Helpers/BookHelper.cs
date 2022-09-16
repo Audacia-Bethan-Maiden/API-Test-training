@@ -9,26 +9,12 @@ namespace APITestingTemplate.Helpers
 {
     public class BookHelper : ApiTestsBase
     {
-        private Random Random { get; } = new();
-
-        private readonly BookHelper _bookHelper;
-
-        public BookHelper()
-        {
-            _bookHelper = new BookHelper();
-        }
+        private readonly Random _random = new Random();
 
         public GetBookDto CreateBook()
         {
             // Set up the request to add the book
             var addBookRequest = SetupWithoutSave<AddBookRequest>();
-            addBookRequest.Title = Random.Words(2);
-            addBookRequest.Description = Random.Sentence();
-            addBookRequest.Author = Random.FemaleForename() + Random.Surname();
-            addBookRequest.PublishedYear = 2015;
-            addBookRequest.AvailableFrom = DateTimeOffset.Now;
-            addBookRequest.HasEBook = true;
-            addBookRequest.BookCategoryId = 1;
 
             // Send the request to add the book
             var addBookResponse =
@@ -43,9 +29,10 @@ namespace APITestingTemplate.Helpers
                 Description = addBookResponse.Data.Output.Description,
                 Author = addBookResponse.Data.Output.Author,
                 PublishedYear = addBookResponse.Data.Output.PublishedYear,
-                AvailableFrom = DateTimeOffset.Now,
+                AvailableFrom = addBookResponse.Data.Output.AvailableFrom,
                 HasEBook = true,
-                BookCategoryId = 1
+                BookCategoryId = 1,
+                Id = addBookResponse.Data.Output.Id
             };
         }
 

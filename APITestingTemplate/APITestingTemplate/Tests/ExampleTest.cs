@@ -25,20 +25,19 @@ namespace APITestingTemplate.Tests
             var bookId = bookDetails.Id;
 
             // Call the get API to get the book by its ID
-            var getBookResponse = Get<GetBookDto>(bookId, Resources.GetBookById);
+            var getBookResponse = Get<GetBookDtoCommandResult>(bookId, Resources.GetBookById);
 
             // Check the status code is ok
             getBookResponse.StatusCode.Should().Be(HttpStatusCode.OK);
 
             // Check that the book details are correct
-            getBookResponse.Data.Title.Should().Be(bookDetails.Title);
-            getBookResponse.Data.Author.Should().Be(bookDetails.Author);
-            getBookResponse.Data.Description.Should().Be(bookDetails.Description);
-            getBookResponse.Data.PublishedYear.Should().Be(bookDetails.PublishedYear);
-            getBookResponse.Data.AvailableFrom.Should().Be(bookDetails.AvailableFrom);
-            getBookResponse.Data.BookCategoryId.Should().Be(bookDetails.BookCategoryId);
-            getBookResponse.Data.HasEBook.Should().Be(bookDetails.HasEBook);
-            getBookResponse.Data.Id.Should().Be(bookDetails.Id);
+            getBookResponse.Data.Output.Title.Should().Be(bookDetails.Title);
+            getBookResponse.Data.Output.Author.Should().Be(bookDetails.Author);
+            getBookResponse.Data.Output.Description.Should().Be(bookDetails.Description);
+            getBookResponse.Data.Output.PublishedYear.Should().Be(bookDetails.PublishedYear);
+            getBookResponse.Data.Output.BookCategoryId.Should().Be(bookDetails.BookCategoryId);
+            getBookResponse.Data.Output.HasEBook.Should().Be(bookDetails.HasEBook);
+            getBookResponse.Data.Output.Id.Should().Be(bookDetails.Id);
         }
     }
 }
