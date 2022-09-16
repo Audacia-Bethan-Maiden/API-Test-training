@@ -15,13 +15,6 @@ namespace APITestingTemplate.Helpers
         {
             // Set up the request to add the book
             var addBookRequest = SetupWithoutSave<AddBookRequest>();
-            addBookRequest.Title = _random.Words(2);
-            addBookRequest.Description = _random.Sentence();
-            addBookRequest.Author = _random.FemaleForename()+ ' ' + _random.Surname();
-            addBookRequest.PublishedYear = 2015;
-            addBookRequest.AvailableFrom = DateTime.Parse("2022-09-16T12:55:22.117Z");
-            addBookRequest.HasEBook = true;
-            addBookRequest.BookCategoryId = 1;
 
             // Send the request to add the book
             var addBookResponse =
