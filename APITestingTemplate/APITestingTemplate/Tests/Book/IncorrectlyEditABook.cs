@@ -48,13 +48,13 @@ namespace APITestingTemplate.Tests.Books
             // Get the book
             var getBookResponse = Get<GetBookDtoCommandResult>(bookId, Resources.GetBookById);
             // Check the details 
-            getBookResponse.Data.Output.Title.Should().Be(bookDetails.First().Title);
-            getBookResponse.Data.Output.Author.Should().Be(bookDetails.First().Author);
-            getBookResponse.Data.Output.Description.Should().Be(bookDetails.First().Description);
-            getBookResponse.Data.Output.AvailableFrom.Should().Be(bookDetails.First().AvailableFrom);
-            getBookResponse.Data.Output.PublishedYear.Should().Be(bookDetails.First().PublishedYear);
-            getBookResponse.Data.Output.HasEBook.Should().BeTrue();
-            getBookResponse.Data.Output.BookCategoryId.Should().Be(bookDetails.First().BookCategoryId);
+            getBookResponse.Data?.Output.Title.Should().Be(bookDetails.First().Title);
+            getBookResponse.Data?.Output.Author.Should().Be(bookDetails.First().Author);
+            getBookResponse.Data?.Output.Description.Should().Be(bookDetails.First().Description);
+            getBookResponse.Data?.Output.AvailableFrom.Should().Be(bookDetails.First().AvailableFrom);
+            getBookResponse.Data?.Output.PublishedYear.Should().Be(bookDetails.First().PublishedYear);
+            getBookResponse.Data?.Output.HasEBook.Should().BeTrue();
+            getBookResponse.Data?.Output.BookCategoryId.Should().Be(bookDetails.First().BookCategoryId);
         }
 
         [Fact]
@@ -84,13 +84,13 @@ namespace APITestingTemplate.Tests.Books
             // Get the book
             var getBookResponse = Get<GetBookDtoCommandResult>(bookId, Resources.GetBookById);
             // Check the details 
-            getBookResponse.Data.Output.Title.Should().Be(bookDetails.First().Title);
-            getBookResponse.Data.Output.Author.Should().Be(bookDetails.First().Author);
-            getBookResponse.Data.Output.Description.Should().Be(bookDetails.First().Description);
-            getBookResponse.Data.Output.AvailableFrom.Should().Be(bookDetails.First().AvailableFrom);
-            getBookResponse.Data.Output.PublishedYear.Should().Be(bookDetails.First().PublishedYear);
-            getBookResponse.Data.Output.HasEBook.Should().BeTrue();
-            getBookResponse.Data.Output.BookCategoryId.Should().Be(bookDetails.First().BookCategoryId);
+            getBookResponse.Data?.Output.Title.Should().Be(bookDetails.First().Title);
+            getBookResponse.Data?.Output.Author.Should().Be(bookDetails.First().Author);
+            getBookResponse.Data?.Output.Description.Should().Be(bookDetails.First().Description);
+            getBookResponse.Data?.Output.AvailableFrom.Should().Be(bookDetails.First().AvailableFrom);
+            getBookResponse.Data?.Output.PublishedYear.Should().Be(bookDetails.First().PublishedYear);
+            getBookResponse.Data?.Output.HasEBook.Should().BeTrue();
+            getBookResponse.Data?.Output.BookCategoryId.Should().Be(bookDetails.First().BookCategoryId);
         }
 
         [Fact]
@@ -120,13 +120,13 @@ namespace APITestingTemplate.Tests.Books
             // Get the book
             var getBookResponse = Get<GetBookDtoCommandResult>(bookId, Resources.GetBookById);
             // Check the details 
-            getBookResponse.Data.Output.Title.Should().Be(bookDetails.First().Title);
-            getBookResponse.Data.Output.Author.Should().Be(bookDetails.First().Author);
-            getBookResponse.Data.Output.Description.Should().Be(bookDetails.First().Description);
-            getBookResponse.Data.Output.AvailableFrom.Should().Be(bookDetails.First().AvailableFrom);
-            getBookResponse.Data.Output.PublishedYear.Should().Be(bookDetails.First().PublishedYear);
-            getBookResponse.Data.Output.HasEBook.Should().BeTrue();
-            getBookResponse.Data.Output.BookCategoryId.Should().Be(bookDetails.First().BookCategoryId);
+            getBookResponse.Data?.Output.Title.Should().Be(bookDetails.First().Title);
+            getBookResponse.Data?.Output.Author.Should().Be(bookDetails.First().Author);
+            getBookResponse.Data?.Output.Description.Should().Be(bookDetails.First().Description);
+            getBookResponse.Data?.Output.AvailableFrom.Should().Be(bookDetails.First().AvailableFrom);
+            getBookResponse.Data?.Output.PublishedYear.Should().Be(bookDetails.First().PublishedYear);
+            getBookResponse.Data?.Output.HasEBook.Should().BeTrue();
+            getBookResponse.Data?.Output.BookCategoryId.Should().Be(bookDetails.First().BookCategoryId);
         }
         [Fact]
         public void Scenario_13_As_a_user_I_cannot_edit_a_book_if_I_do_not_include_the_book_author()
@@ -155,13 +155,13 @@ namespace APITestingTemplate.Tests.Books
             // Get the book
             var getBookResponse = Get<GetBookDtoCommandResult>(bookId, Resources.GetBookById);
             // Check the details 
-            getBookResponse.Data.Output.Title.Should().Be(bookDetails.First().Title);
-            getBookResponse.Data.Output.Author.Should().Be(bookDetails.First().Author);
-            getBookResponse.Data.Output.Description.Should().Be(bookDetails.First().Description);
-            getBookResponse.Data.Output.AvailableFrom.Should().Be(bookDetails.First().AvailableFrom);
-            getBookResponse.Data.Output.PublishedYear.Should().Be(bookDetails.First().PublishedYear);
-            getBookResponse.Data.Output.HasEBook.Should().BeTrue();
-            getBookResponse.Data.Output.BookCategoryId.Should().Be(bookDetails.First().BookCategoryId);
+            getBookResponse.Data?.Output.Title.Should().Be(bookDetails.First().Title);
+            getBookResponse.Data?.Output.Author.Should().Be(bookDetails.First().Author);
+            getBookResponse.Data?.Output.Description.Should().Be(bookDetails.First().Description);
+            getBookResponse.Data?.Output.AvailableFrom.Should().Be(bookDetails.First().AvailableFrom);
+            getBookResponse.Data?.Output.PublishedYear.Should().Be(bookDetails.First().PublishedYear);
+            getBookResponse.Data?.Output.HasEBook.Should().BeTrue();
+            getBookResponse.Data?.Output.BookCategoryId.Should().Be(bookDetails.First().BookCategoryId);
         }
         [Fact]
         public void Scenario_14_As_a_user_I_cannot_edit_a_book_if_I_do_not_include_the_available_from_date()
@@ -190,13 +190,13 @@ namespace APITestingTemplate.Tests.Books
             // Get the book
             var getBookResponse = Get<GetBookDtoCommandResult>(bookId, Resources.GetBookById);
             // Check the details 
-            getBookResponse.Data.Output.Title.Should().Be(bookDetails.First().Title);
-            getBookResponse.Data.Output.Author.Should().Be(bookDetails.First().Author);
-            getBookResponse.Data.Output.Description.Should().Be(bookDetails.First().Description);
-            getBookResponse.Data.Output.AvailableFrom.Should().Be(bookDetails.First().AvailableFrom);
-            getBookResponse.Data.Output.PublishedYear.Should().Be(bookDetails.First().PublishedYear);
-            getBookResponse.Data.Output.HasEBook.Should().BeTrue();
-            getBookResponse.Data.Output.BookCategoryId.Should().Be(bookDetails.First().BookCategoryId);
+            getBookResponse.Data?.Output.Title.Should().Be(bookDetails.First().Title);
+            getBookResponse.Data?.Output.Author.Should().Be(bookDetails.First().Author);
+            getBookResponse.Data?.Output.Description.Should().Be(bookDetails.First().Description);
+            getBookResponse.Data?.Output.AvailableFrom.Should().Be(bookDetails.First().AvailableFrom);
+            getBookResponse.Data?.Output.PublishedYear.Should().Be(bookDetails.First().PublishedYear);
+            getBookResponse.Data?.Output.HasEBook.Should().BeTrue();
+            getBookResponse.Data?.Output.BookCategoryId.Should().Be(bookDetails.First().BookCategoryId);
         }
         [Fact]
         public void Scenario_15_As_a_user_I_cannot_edit_a_book_if_I_do_not_include_the_published_year()
@@ -225,13 +225,13 @@ namespace APITestingTemplate.Tests.Books
             // Get the book
             var getBookResponse = Get<GetBookDtoCommandResult>(bookId, Resources.GetBookById);
             // Check the details 
-            getBookResponse.Data.Output.Title.Should().Be(bookDetails.First().Title);
-            getBookResponse.Data.Output.Author.Should().Be(bookDetails.First().Author);
-            getBookResponse.Data.Output.Description.Should().Be(bookDetails.First().Description);
-            getBookResponse.Data.Output.AvailableFrom.Should().Be(bookDetails.First().AvailableFrom);
-            getBookResponse.Data.Output.PublishedYear.Should().Be(bookDetails.First().PublishedYear);
-            getBookResponse.Data.Output.HasEBook.Should().BeTrue();
-            getBookResponse.Data.Output.BookCategoryId.Should().Be(bookDetails.First().BookCategoryId);
+            getBookResponse.Data?.Output.Title.Should().Be(bookDetails.First().Title);
+            getBookResponse.Data?.Output.Author.Should().Be(bookDetails.First().Author);
+            getBookResponse.Data?.Output.Description.Should().Be(bookDetails.First().Description);
+            getBookResponse.Data?.Output.AvailableFrom.Should().Be(bookDetails.First().AvailableFrom);
+            getBookResponse.Data?.Output.PublishedYear.Should().Be(bookDetails.First().PublishedYear);
+            getBookResponse.Data?.Output.HasEBook.Should().BeTrue();
+            getBookResponse.Data?.Output.BookCategoryId.Should().Be(bookDetails.First().BookCategoryId);
         }
         [Fact]
         public void Scenario_16_As_a_user_I_cannot_edit_a_book_if_I_do_not_include_the_has_e_book()
@@ -261,13 +261,13 @@ namespace APITestingTemplate.Tests.Books
             // Get the book
             var getBookResponse = Get<GetBookDtoCommandResult>(bookId, Resources.GetBookById);
             // Check the details 
-            getBookResponse.Data.Output.Title.Should().Be(bookDetails.First().Title);
-            getBookResponse.Data.Output.Author.Should().Be(bookDetails.First().Author);
-            getBookResponse.Data.Output.Description.Should().Be(bookDetails.First().Description);
-            getBookResponse.Data.Output.AvailableFrom.Should().Be(bookDetails.First().AvailableFrom);
-            getBookResponse.Data.Output.PublishedYear.Should().Be(bookDetails.First().PublishedYear);
-            getBookResponse.Data.Output.HasEBook.Should().BeTrue();
-            getBookResponse.Data.Output.BookCategoryId.Should().Be(bookDetails.First().BookCategoryId);
+            getBookResponse.Data?.Output.Title.Should().Be(bookDetails.First().Title);
+            getBookResponse.Data?.Output.Author.Should().Be(bookDetails.First().Author);
+            getBookResponse.Data?.Output.Description.Should().Be(bookDetails.First().Description);
+            getBookResponse.Data?.Output.AvailableFrom.Should().Be(bookDetails.First().AvailableFrom);
+            getBookResponse.Data?.Output.PublishedYear.Should().Be(bookDetails.First().PublishedYear);
+            getBookResponse.Data?.Output.HasEBook.Should().BeTrue();
+            getBookResponse.Data?.Output.BookCategoryId.Should().Be(bookDetails.First().BookCategoryId);
         }
         [Fact]
         public void Scenario_17_As_a_user_I_cannot_edit_a_book_if_I_do_not_include_the_book_category_Id()
@@ -296,13 +296,13 @@ namespace APITestingTemplate.Tests.Books
             // Get the book
             var getBookResponse = Get<GetBookDtoCommandResult>(bookId, Resources.GetBookById);
             // Check the details 
-            getBookResponse.Data.Output.Title.Should().Be(bookDetails.First().Title);
-            getBookResponse.Data.Output.Author.Should().Be(bookDetails.First().Author);
-            getBookResponse.Data.Output.Description.Should().Be(bookDetails.First().Description);
-            getBookResponse.Data.Output.AvailableFrom.Should().Be(bookDetails.First().AvailableFrom);
-            getBookResponse.Data.Output.PublishedYear.Should().Be(bookDetails.First().PublishedYear);
-            getBookResponse.Data.Output.HasEBook.Should().BeTrue();
-            getBookResponse.Data.Output.BookCategoryId.Should().Be(bookDetails.First().BookCategoryId);
+            getBookResponse.Data?.Output.Title.Should().Be(bookDetails.First().Title);
+            getBookResponse.Data?.Output.Author.Should().Be(bookDetails.First().Author);
+            getBookResponse.Data?.Output.Description.Should().Be(bookDetails.First().Description);
+            getBookResponse.Data?.Output.AvailableFrom.Should().Be(bookDetails.First().AvailableFrom);
+            getBookResponse.Data?.Output.PublishedYear.Should().Be(bookDetails.First().PublishedYear);
+            getBookResponse.Data?.Output.HasEBook.Should().BeTrue();
+            getBookResponse.Data?.Output.BookCategoryId.Should().Be(bookDetails.First().BookCategoryId);
         }
     }
 }

@@ -10,7 +10,7 @@ using Audacia.Testing.Api;
 using FluentAssertions;
 using Xunit;
 
-namespace APITestingTemplate.Tests.Books
+namespace APITestingTemplate.Tests.BookCategory
 {
     public class IncorrectlyEditABookCategory : ApiTestsBase, IClassFixture<AddCategoryFixture>
     {

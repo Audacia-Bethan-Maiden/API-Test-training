@@ -9,7 +9,7 @@ using Audacia.Testing.Api;
 using FluentAssertions;
 using Xunit;
 
-namespace APITestingTemplate.Tests.Books
+namespace APITestingTemplate.Tests.BookCategory
 {
     public class GetAllBookCategories : ApiTestsBase, IClassFixture<AddManyCategoriesFixture>
     {
@@ -33,8 +33,8 @@ namespace APITestingTemplate.Tests.Books
             getBookCategoriesResponse.StatusCode.Should().Be(HttpStatusCode.OK);
 
             // Check some book categories are there
-            getBookCategoriesResponse.Data[getBookCategoriesResponse.Data.Count - 2].Name.Should().Be(bookCategoryOneName);
-            getBookCategoriesResponse.Data.Last().Name.Should().Be(bookCategoryTwoName);
+            getBookCategoriesResponse.Content.Should().Contain(bookCategoryOneName);
+            getBookCategoriesResponse.Content.Should().Contain(bookCategoryTwoName);
         }
     }
 }

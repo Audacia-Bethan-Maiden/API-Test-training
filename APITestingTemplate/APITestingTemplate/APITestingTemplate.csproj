@@ -33,6 +33,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Folder Include="DataSetup\Customizations\Books\" />
     <Folder Include="Models\Dtos\Generated\" />
   </ItemGroup>
 

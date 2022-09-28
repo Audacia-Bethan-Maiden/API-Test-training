@@ -7,7 +7,7 @@ using APITestingTemplate.Models.Dtos;
 using Audacia.Testing.Api;
 using FluentAssertions;
 using Xunit;
-namespace APITestingTemplate.Tests.Books;
+namespace APITestingTemplate.Tests.BookCategory;
 
 public class GetAllBooksFromACategory : ApiTestsBase, IClassFixture<AddManyBooksWithTheSameCategoryFixture>
 {
