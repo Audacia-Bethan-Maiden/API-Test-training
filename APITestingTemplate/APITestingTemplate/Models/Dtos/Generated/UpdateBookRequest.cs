@@ -16,7 +16,7 @@ namespace APITestingTemplate.Models.Dtos
 	    [Newtonsoft.Json.JsonProperty("availableFrom", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
 	    public System.DateTimeOffset? AvailableFrom { get; set; }
 	    [Newtonsoft.Json.JsonProperty("hasEBook", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-	    public bool HasEBook { get; set; }
+	    public bool? HasEBook { get; set; }
 	    [Newtonsoft.Json.JsonProperty("bookCategoryId", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
 	    public int? BookCategoryId { get; set; }
 	}

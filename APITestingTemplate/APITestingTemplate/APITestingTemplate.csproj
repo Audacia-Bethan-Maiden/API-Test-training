@@ -8,6 +8,12 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="Tests\BookApp\**" />
+    <EmbeddedResource Remove="Tests\BookApp\**" />
+    <None Remove="Tests\BookApp\**" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="Audacia.Random" Version="3.1.21076.2" />
     <PackageReference Include="Audacia.Testing.Api" Version="4.0.0" />
     <PackageReference Include="Microsoft.AspNetCore.Http.Features" Version="5.0.17" />

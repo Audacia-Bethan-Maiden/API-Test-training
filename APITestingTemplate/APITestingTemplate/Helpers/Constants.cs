@@ -2,6 +2,8 @@
 {
     public static class Constants
     {
-        public const int TheManWhoDiedTwiceBookID = 3;
+        public const int BookIdThatDoesNotExist = 1;
+
+        public const int BookCategoryIdThatDoesNotExist = 68;
     }
 }
