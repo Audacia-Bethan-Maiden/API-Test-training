@@ -19,6 +19,8 @@ namespace APITestingTemplate.Tests.Books
         {
             _addBookAndCategoryFixture = addBookAndCategoryFixture;
         }
+
+        [Trait("Category", "Core")]
         [Fact]
         public void Scenario_9_As_a_user_I_can_edit_a_book()
         {
@@ -28,12 +30,6 @@ namespace APITestingTemplate.Tests.Books
 
             var editBookRequest = SetupWithoutSave<UpdateBookRequest>();
             editBookRequest.Id = bookId;
-            editBookRequest.Title = bookDetails.First().Title;
-            editBookRequest.Description = bookDetails.First().Description;
-            editBookRequest.Author = bookDetails.First().Author;
-            editBookRequest.AvailableFrom = bookDetails.First().AvailableFrom;
-            editBookRequest.PublishedYear = bookDetails.First().PublishedYear;
-            editBookRequest.HasEBook = bookDetails.First().HasEBook;
             editBookRequest.BookCategoryId = bookDetails.First().BookCategoryId;
 
             // Call the API to edit the book
@@ -43,9 +39,9 @@ namespace APITestingTemplate.Tests.Books
             editBookResponse.StatusCode.Should().Be(HttpStatusCode.OK);
 
             // Check the details in the output
-            editBookResponse.Data?.Output.Title.Should().Be(bookDetails.First().Title);
-            editBookResponse.Data?.Output.Description.Should().Be(bookDetails.First().Description);
-            editBookResponse.Data?.Output.PublishedYear.Should().Be(bookDetails.First().PublishedYear);
+            editBookResponse.Data?.Output.Title.Should().Be(editBookRequest.Title);
+            editBookResponse.Data?.Output.Description.Should().Be(editBookRequest.Description);
+            editBookResponse.Data?.Output.PublishedYear.Should().Be(editBookRequest.PublishedYear);
         }
     }
 }

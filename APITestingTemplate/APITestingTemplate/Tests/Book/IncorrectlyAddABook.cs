@@ -12,6 +12,7 @@ namespace APITestingTemplate.Tests.Books
 {
     public class IncorrectlyAddABookTest : ApiTestsBase
     {
+        [Trait("Category", "Core")]
         [Fact]
         public void Scenario_18_As_a_user_I_cannot_add_a_book_if_I_do_not_include_a_book_title()
         {
@@ -27,6 +28,7 @@ namespace APITestingTemplate.Tests.Books
             addBookResponse.StatusCode.Should().Be(HttpStatusCode.BadRequest);
         }
 
+        [Trait("Category", "Not Core")]
         [Fact]
         public void Scenario_19_As_a_user_I_cannot_add_a_book_if_I_do_not_include_a_book_description()
         {
@@ -42,6 +44,7 @@ namespace APITestingTemplate.Tests.Books
             addBookResponse.StatusCode.Should().Be(HttpStatusCode.BadRequest);
         }
 
+        [Trait("Category", "Core")]
         [Fact]
         public void Scenario_20_As_a_user_I_cannot_add_a_book_if_I_do_not_include_a_book_author()
         {
@@ -57,6 +60,7 @@ namespace APITestingTemplate.Tests.Books
             addBookResponse.StatusCode.Should().Be(HttpStatusCode.BadRequest);
         }
 
+        [Trait("Category","Not Core")]
         [Fact]
         public void Scenario_21_As_a_user_I_cannot_add_a_book_if_I_do_not_include_the_published_year()
         {
@@ -72,6 +76,7 @@ namespace APITestingTemplate.Tests.Books
             addBookResponse.StatusCode.Should().Be(HttpStatusCode.BadRequest);
         }
 
+        [Trait("Category", "Not Core")]
         [Fact]
         public void Scenario_22_As_a_user_I_cannot_add_a_book_if_I_do_not_include_available_from_date()
         {
@@ -87,6 +92,7 @@ namespace APITestingTemplate.Tests.Books
             addBookResponse.StatusCode.Should().Be(HttpStatusCode.BadRequest);
         }
 
+        [Trait("Category", "Core")]
         [Fact]
         public void Scenario_23_As_a_user_I_cannot_add_a_book_if_I_do_not_include_has_e_book()
         {
@@ -101,6 +107,8 @@ namespace APITestingTemplate.Tests.Books
             // Check the status code
             addBookResponse.StatusCode.Should().Be(HttpStatusCode.BadRequest);
         }
+
+        [Trait("Category", "Core")]
         [Fact]
         public void Scenario_24_As_a_user_I_cannot_add_a_book_if_I_do_not_include_a_book_category()
         {

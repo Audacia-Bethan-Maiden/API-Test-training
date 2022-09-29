@@ -4,7 +4,7 @@ using AutoFixture.Dsl;
 
 namespace APITestingTemplate.DataSetup.Customizations.Books
 {
-    public class AddBookWithoutEBook : BaseCustomizationsAddBook
+    public class AddBookWithoutEBook : BaseCustomizations
     {
         protected override IPostprocessComposer<AddBookRequest> AddBooks(IFixture fixture)
         {

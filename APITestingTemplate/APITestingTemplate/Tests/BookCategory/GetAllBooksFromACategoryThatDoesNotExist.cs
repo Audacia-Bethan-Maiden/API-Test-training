@@ -20,7 +20,7 @@ namespace APITestingTemplate.Tests.BookCategory
             var bookCategoryId = Constants.BookCategoryIdThatDoesNotExist;
 
             // Call API to get all the book categories
-            var bookCategoryResponse = GetAll<List<GetBookDtoIEnumerableCommandResult>>(Resources.GetBooksFromCategory(bookCategoryId.ToString()));
+            var bookCategoryResponse = GetAll<GetBookDtoIEnumerableCommandResult>(Resources.GetBooksFromCategory(bookCategoryId.ToString()));
 
             // Check the status code is NOT OK (need to change later)
             bookCategoryResponse.StatusCode.Should().Be(HttpStatusCode.OK);

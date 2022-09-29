@@ -31,7 +31,7 @@ namespace APITestingTemplate.Tests.BookCategory
             bookCategoryResponse.StatusCode.Should().Be(HttpStatusCode.OK);
 
             // Check its the right category
-            bookCategoryResponse.Data.Output.Name.Should().Be(bookCategoryName);
+            bookCategoryResponse.Data?.Output.Name.Should().Be(bookCategoryName);
         }
     }
 }

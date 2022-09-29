@@ -8,7 +8,7 @@ using AutoFixture.Dsl;
 namespace APITestingTemplate.DataSetup.Customizations
 {
     [DefaultCustomization]
-    public class BaseCustomizationsAddBook : ICustomization
+    public class BaseCustomizations : ICustomization
     {
         private Random Random { get; } = new();
 
@@ -17,6 +17,9 @@ namespace APITestingTemplate.DataSetup.Customizations
             // Books
             fixture.Register(() => 
                 AddBooks(fixture).Create());
+
+            fixture.Register(() => 
+                UpdateBook(fixture).Create());
         }
 
         protected virtual IPostprocessComposer<AddBookRequest> AddBooks(IFixture fixture)
@@ -31,6 +34,16 @@ namespace APITestingTemplate.DataSetup.Customizations
                 .With(dto => dto.BookCategoryId, () => 1);
         }
 
-
+        protected virtual IPostprocessComposer<UpdateBookRequest> UpdateBook(IFixture fixture)
+        {
+            return fixture.Build<UpdateBookRequest>()
+                .With(dto => dto.Title, () => Random.Words(2))
+                .With(dto => dto.Description, () => Random.Sentence())
+                .With(dto => dto.Author, () => Random.Forename() + ' ' + Random.Surname())
+                .With(dto => dto.AvailableFrom, () => new DateTime(1964, 03, 20))
+                .With(dto => dto.PublishedYear, () => 1999)
+                .With(dto => dto.HasEBook, () => true)
+                .With(dto => dto.BookCategoryId, () => 2);
+        }
     }
 }

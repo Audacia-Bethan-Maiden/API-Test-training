@@ -20,6 +20,8 @@ namespace APITestingTemplate.Tests.Books
         {
             _addManyBooksAndCategoriesFixture = addManyBooksAndCategoriesFixture;
         }
+
+        [Trait("Category", "Not Core")]
         [Fact]
         public void Scenario_2_As_a_user_I_can_get_all_books()
         {
@@ -29,13 +31,14 @@ namespace APITestingTemplate.Tests.Books
             var bookTwoDetails = _addManyBooksAndCategoriesFixture.BookDataList[1].BookData;
             var bookTwoTitle = bookTwoDetails.First().Title;
             // Call the API to get all the books
-            var getAllBooksResponse = GetAll<List<GetBookDtoArrayCommandResult>>(Resources.GetAllBooks);
+            var getAllBooksResponse = GetAll<List<GetBookDto>>(Resources.GetAllBooks);
 
             // Check the status code is OK
             getAllBooksResponse.StatusCode.Should().Be(HttpStatusCode.OK);
 
             // Check some of the books are there
-            getAllBooksResponse.Content.Should().Contain(bookOneTitle, bookTwoTitle);
+            getAllBooksResponse.Data?.Last().Title.Should().Be(bookTwoTitle);
+            getAllBooksResponse.Data?[getAllBooksResponse.Data.Count - 2].Title.Should().Be(bookOneTitle);
         }
     }
 }

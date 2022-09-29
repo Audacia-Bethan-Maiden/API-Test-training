@@ -19,7 +19,7 @@ namespace APITestingTemplate.Tests.Books
             var bookId = Constants.BookIdThatDoesNotExist;
 
             // Call the API to delete the book 
-            var deleteBookResponse = Delete<CommandResult>(bookId, Resources.DeleteBook);
+            var deleteBookResponse = Delete<BooleanCommandResult>(bookId, Resources.DeleteBook);
 
             // Check the status code 
             deleteBookResponse.StatusCode.Should().Be(HttpStatusCode.BadRequest);

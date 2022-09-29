@@ -21,6 +21,7 @@ namespace APITestingTemplate.Tests.BookCategory
         {
             _addCategoryFixture = addCategoryFixture;
         }
+        [Trait("Category", "Not Core")]
         [Fact]
         public void Scenario_6_As_a_user_I_cannot_get_a_book_from_a_category_that_does_not_have_any_books()
         {
@@ -29,13 +30,13 @@ namespace APITestingTemplate.Tests.BookCategory
             var bookCategoryId = bookCategoryData.Id;
 
             // Call the API to get all books with the category Id
-            var bookCategoryListResponse = GetAll<List<GetBookCategoryDto>>(Resources.GetBooksFromCategory(bookCategoryId.ToString()));
+            var bookCategoryListResponse = GetAll<GetBookDtoIEnumerableCommandResult>(Resources.GetBooksFromCategory(bookCategoryId.ToString()));
 
             // Check the status code is NOT OK (need to change later)
             bookCategoryListResponse.StatusCode.Should().Be(HttpStatusCode.OK);
 
             // Check the list is empty?
-            bookCategoryListResponse.Content.Should().NotBeNull();
+            bookCategoryListResponse.Data.Output.Should().HaveCount(0);
         }
     }
 }

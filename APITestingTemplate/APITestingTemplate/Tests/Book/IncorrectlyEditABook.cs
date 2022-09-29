@@ -21,21 +21,17 @@ namespace APITestingTemplate.Tests.Books
         {
             _addBookAndCategoryFixture = addBookAndCategoryFixture;
         }
+        [Trait("Category", "Core")]
         [Fact]
-        public void Scenario_10_As_a_user_I_cannot_edit_a_book_if_I_do_not_include_the_book_Id()
+        public void Scenario_10_As_a_user_I_cannot_edit_a_book_if_I_use_a_book_Id_that_does_not_exist()
         {
             // Get book details
             var bookDetails = _addBookAndCategoryFixture.BookData.BookData;
             var bookId = bookDetails.First().Id;
 
             // Details to edit
-            var editBookRequest = new UpdateBookRequest();
-            editBookRequest.Title = Random.Words(2);
-            editBookRequest.Description = Random.Sentence();
-            editBookRequest.Author = Random.Forename() + ' ' + Random.Surname();
-            editBookRequest.AvailableFrom = bookDetails.First().AvailableFrom;
-            editBookRequest.PublishedYear = bookDetails.First().PublishedYear;
-            editBookRequest.HasEBook = bookDetails.First().HasEBook;
+            var editBookRequest = SetupWithoutSave<UpdateBookRequest>();
+            editBookRequest.Id = 0;
             editBookRequest.BookCategoryId = 1;
 
             // Call the API to edit the book
@@ -47,7 +43,7 @@ namespace APITestingTemplate.Tests.Books
             // Check the details of the book haven't been changed
             // Get the book
             var getBookResponse = Get<GetBookDtoCommandResult>(bookId, Resources.GetBookById);
-            // Check the details 
+            // Check the details have not changed
             getBookResponse.Data?.Output.Title.Should().Be(bookDetails.First().Title);
             getBookResponse.Data?.Output.Author.Should().Be(bookDetails.First().Author);
             getBookResponse.Data?.Output.Description.Should().Be(bookDetails.First().Description);
@@ -57,6 +53,7 @@ namespace APITestingTemplate.Tests.Books
             getBookResponse.Data?.Output.BookCategoryId.Should().Be(bookDetails.First().BookCategoryId);
         }
 
+        [Trait("Category", "Core")]
         [Fact]
         public void Scenario_11_As_a_user_I_cannot_edit_a_book_if_I_do_not_include_the_book_title()
         {
@@ -65,14 +62,10 @@ namespace APITestingTemplate.Tests.Books
             var bookId = bookDetails.First().Id;
 
             // Details to edit
-            var editBookRequest = new UpdateBookRequest();
+            var editBookRequest = SetupWithoutSave<UpdateBookRequest>();
             editBookRequest.Id = bookId;
-            editBookRequest.Description = Random.Sentence();
-            editBookRequest.Author = Random.Forename() + ' ' + Random.Surname();
-            editBookRequest.AvailableFrom = bookDetails.First().AvailableFrom;
-            editBookRequest.PublishedYear = bookDetails.First().PublishedYear;
-            editBookRequest.HasEBook = bookDetails.First().HasEBook;
             editBookRequest.BookCategoryId = 1;
+            editBookRequest.Title = null;
 
             // Call the API to edit the book
             var editBookResponse = Put<GetBookDto>(editBookRequest, Resources.EditBook);
@@ -83,7 +76,7 @@ namespace APITestingTemplate.Tests.Books
             // Check the details of the book haven't been changed
             // Get the book
             var getBookResponse = Get<GetBookDtoCommandResult>(bookId, Resources.GetBookById);
-            // Check the details 
+            // Check the details have not been changed
             getBookResponse.Data?.Output.Title.Should().Be(bookDetails.First().Title);
             getBookResponse.Data?.Output.Author.Should().Be(bookDetails.First().Author);
             getBookResponse.Data?.Output.Description.Should().Be(bookDetails.First().Description);
@@ -93,6 +86,7 @@ namespace APITestingTemplate.Tests.Books
             getBookResponse.Data?.Output.BookCategoryId.Should().Be(bookDetails.First().BookCategoryId);
         }
 
+        [Trait("Category", "Not Core")]
         [Fact]
         public void Scenario_12_As_a_user_I_cannot_edit_a_book_if_I_do_not_include_the_book_description()
         {
@@ -101,14 +95,10 @@ namespace APITestingTemplate.Tests.Books
             var bookId = bookDetails.First().Id;
 
             // Details to edit
-            var editBookRequest = new UpdateBookRequest();
+            var editBookRequest = SetupWithoutSave<UpdateBookRequest>();
             editBookRequest.Id = bookId;
-            editBookRequest.Title = Random.Words(2);
-            editBookRequest.Author = Random.Forename() + ' ' + Random.Surname();
-            editBookRequest.AvailableFrom = bookDetails.First().AvailableFrom;
-            editBookRequest.PublishedYear = bookDetails.First().PublishedYear;
-            editBookRequest.HasEBook = bookDetails.First().HasEBook;
             editBookRequest.BookCategoryId = 1;
+            editBookRequest.Description = null;
 
             // Call the API to edit the book
             var editBookResponse = Put<GetBookDto>(editBookRequest, Resources.EditBook);
@@ -128,6 +118,8 @@ namespace APITestingTemplate.Tests.Books
             getBookResponse.Data?.Output.HasEBook.Should().BeTrue();
             getBookResponse.Data?.Output.BookCategoryId.Should().Be(bookDetails.First().BookCategoryId);
         }
+
+        [Trait("Category", "Not Core")]
         [Fact]
         public void Scenario_13_As_a_user_I_cannot_edit_a_book_if_I_do_not_include_the_book_author()
         {
@@ -136,14 +128,10 @@ namespace APITestingTemplate.Tests.Books
             var bookId = bookDetails.First().Id;
 
             // Details to edit
-            var editBookRequest = new UpdateBookRequest();
+            var editBookRequest = SetupWithoutSave<UpdateBookRequest>();
             editBookRequest.Id = bookId;
-            editBookRequest.Title = Random.Words(2);
-            editBookRequest.Description = Random.Sentence();
-            editBookRequest.AvailableFrom = bookDetails.First().AvailableFrom;
-            editBookRequest.PublishedYear = bookDetails.First().PublishedYear;
-            editBookRequest.HasEBook = bookDetails.First().HasEBook;
             editBookRequest.BookCategoryId = 1;
+            editBookRequest.Author = null;
 
             // Call the API to edit the book
             var editBookResponse = Put<GetBookDtoCommandResult>(editBookRequest, Resources.EditBook);
@@ -163,6 +151,8 @@ namespace APITestingTemplate.Tests.Books
             getBookResponse.Data?.Output.HasEBook.Should().BeTrue();
             getBookResponse.Data?.Output.BookCategoryId.Should().Be(bookDetails.First().BookCategoryId);
         }
+
+        [Trait("Category", "Core")]
         [Fact]
         public void Scenario_14_As_a_user_I_cannot_edit_a_book_if_I_do_not_include_the_available_from_date()
         {
@@ -171,14 +161,10 @@ namespace APITestingTemplate.Tests.Books
             var bookId = bookDetails.First().Id;
 
             // Details to edit
-            var editBookRequest = new UpdateBookRequest();
+            var editBookRequest = SetupWithoutSave<UpdateBookRequest>();
             editBookRequest.Id = bookId;
-            editBookRequest.Title = Random.Words(2);
-            editBookRequest.Description = Random.Sentence();
-            editBookRequest.Author = Random.Forename() + ' ' + Random.Surname();
-            editBookRequest.PublishedYear = bookDetails.First().PublishedYear;
-            editBookRequest.HasEBook = bookDetails.First().HasEBook;
             editBookRequest.BookCategoryId = 1;
+            editBookRequest.AvailableFrom = null;
 
             // Call the API to edit the book
             var editBookResponse = Put<GetBookDtoCommandResult>(editBookRequest, Resources.EditBook);
@@ -198,6 +184,8 @@ namespace APITestingTemplate.Tests.Books
             getBookResponse.Data?.Output.HasEBook.Should().BeTrue();
             getBookResponse.Data?.Output.BookCategoryId.Should().Be(bookDetails.First().BookCategoryId);
         }
+
+        [Trait("Category", "Not Core")]
         [Fact]
         public void Scenario_15_As_a_user_I_cannot_edit_a_book_if_I_do_not_include_the_published_year()
         {
@@ -206,14 +194,10 @@ namespace APITestingTemplate.Tests.Books
             var bookId = bookDetails.First().Id;
 
             // Details to edit
-            var editBookRequest = new UpdateBookRequest();
+            var editBookRequest = SetupWithoutSave<UpdateBookRequest>();
             editBookRequest.Id = bookId;
-            editBookRequest.Title = Random.Words(2);
-            editBookRequest.Description = Random.Sentence();
-            editBookRequest.Author = Random.Forename() + ' ' + Random.Surname();
-            editBookRequest.AvailableFrom = bookDetails.First().AvailableFrom;
-            editBookRequest.HasEBook = bookDetails.First().HasEBook;
             editBookRequest.BookCategoryId = 1;
+            editBookRequest.PublishedYear = null;
 
             // Call the API to edit the book
             var editBookResponse = Put<GetBookDtoCommandResult>(editBookRequest, Resources.EditBook);
@@ -233,6 +217,8 @@ namespace APITestingTemplate.Tests.Books
             getBookResponse.Data?.Output.HasEBook.Should().BeTrue();
             getBookResponse.Data?.Output.BookCategoryId.Should().Be(bookDetails.First().BookCategoryId);
         }
+
+        [Trait("Category", "Core")]
         [Fact]
         public void Scenario_16_As_a_user_I_cannot_edit_a_book_if_I_do_not_include_the_has_e_book()
         {
@@ -243,11 +229,6 @@ namespace APITestingTemplate.Tests.Books
             // Details to edit
             var editBookRequest = SetupWithoutSave<UpdateBookRequest>();
             editBookRequest.Id = bookId;
-            editBookRequest.Title = Random.Words(2);
-            editBookRequest.Description = Random.Sentence();
-            editBookRequest.Author = Random.Forename() + ' ' + Random.Surname();
-            editBookRequest.AvailableFrom = bookDetails.First().AvailableFrom;
-            editBookRequest.PublishedYear = bookDetails.First().PublishedYear;
             editBookRequest.BookCategoryId = 1;
             editBookRequest.HasEBook = null;
 
@@ -269,6 +250,8 @@ namespace APITestingTemplate.Tests.Books
             getBookResponse.Data?.Output.HasEBook.Should().BeTrue();
             getBookResponse.Data?.Output.BookCategoryId.Should().Be(bookDetails.First().BookCategoryId);
         }
+
+        [Trait("Category", "Not Core")]
         [Fact]
         public void Scenario_17_As_a_user_I_cannot_edit_a_book_if_I_do_not_include_the_book_category_Id()
         {
@@ -277,14 +260,9 @@ namespace APITestingTemplate.Tests.Books
             var bookId = bookDetails.First().Id;
 
             // Details to edit
-            var editBookRequest = new UpdateBookRequest();
+            var editBookRequest = SetupWithoutSave<UpdateBookRequest>();
             editBookRequest.Id = bookId;
-            editBookRequest.Title = Random.Words(2);
-            editBookRequest.Description = Random.Sentence();
-            editBookRequest.Author = Random.Forename() + ' ' + Random.Surname();
-            editBookRequest.AvailableFrom = bookDetails.First().AvailableFrom;
-            editBookRequest.PublishedYear = bookDetails.First().PublishedYear;
-            editBookRequest.HasEBook = bookDetails.First().HasEBook;
+            editBookRequest.BookCategoryId = null;
 
             // Call the API to edit the book
             var editBookResponse = Put<GetBookDtoCommandResult>(editBookRequest, Resources.EditBook);

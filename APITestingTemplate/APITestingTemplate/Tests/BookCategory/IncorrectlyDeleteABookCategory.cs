@@ -19,7 +19,7 @@ namespace APITestingTemplate.Tests.BookCategory
             var bookCategoryId = Constants.BookCategoryIdThatDoesNotExist;
 
             // Call the API
-            var bookCategoryResponse = Delete<CommandResult>(bookCategoryId, Resources.DeleteABookCategory);
+            var bookCategoryResponse = Delete<BooleanCommandResult>(bookCategoryId, Resources.DeleteABookCategory);
 
             // Check the status code
             // Status code is 200 so the test fails but the category is deleted
@@ -27,7 +27,7 @@ namespace APITestingTemplate.Tests.BookCategory
 
             // Check the error message
             bookCategoryResponse.Content.Contains(
-                "Unable to find book category with Id" + bookCategoryId.ToString());
+                "Unable to find book category with Id" + bookCategoryId);
         }
     }
 }

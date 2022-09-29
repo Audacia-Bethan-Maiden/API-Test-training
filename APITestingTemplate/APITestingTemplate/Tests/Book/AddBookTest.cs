@@ -24,6 +24,8 @@ namespace APITestingTemplate.Tests.Books
 
             _bookHelper = new BookHelper();
         }
+
+        [Trait("Category", "Core")]
         [Fact]
         public void Scenario_8_As_a_user_I_can_add_a_book()
         {

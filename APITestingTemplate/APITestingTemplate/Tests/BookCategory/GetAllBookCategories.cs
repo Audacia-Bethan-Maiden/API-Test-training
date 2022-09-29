@@ -19,6 +19,7 @@ namespace APITestingTemplate.Tests.BookCategory
         {
             _addManyCategoriesFixture = addManyCategoriesFixture;
         }
+        [Trait("Category", "Core")]
         [Fact]
         public void Scenario_4_As_a_user_I_can_get_all_book_categories()
         {
@@ -33,8 +34,8 @@ namespace APITestingTemplate.Tests.BookCategory
             getBookCategoriesResponse.StatusCode.Should().Be(HttpStatusCode.OK);
 
             // Check some book categories are there
-            getBookCategoriesResponse.Content.Should().Contain(bookCategoryOneName);
-            getBookCategoriesResponse.Content.Should().Contain(bookCategoryTwoName);
+            getBookCategoriesResponse.Data?.Last().Name.Should().Be(bookCategoryTwoName);
+            getBookCategoriesResponse.Data?[getBookCategoriesResponse.Data.Count - 2].Name.Should().Be(bookCategoryOneName);
         }
     }
 }

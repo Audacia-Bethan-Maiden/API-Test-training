@@ -20,6 +20,8 @@ namespace APITestingTemplate.Tests.Books
         {
             _addBookAndCategoryWithoutDeleteFixture = addBookAndCategoryWithoutDeleteFixture;
         }
+
+        [Trait("Category", "Core")]
         [Fact]
         public void Scenario_As_a_user_I_can_delete_a_book()
         {
@@ -29,7 +31,7 @@ namespace APITestingTemplate.Tests.Books
             var bookId = bookDetails.First().Id;
 
             // Call the API to delete the book 
-            var deleteBookResponse = Delete<CommandResult>(bookId, Resources.DeleteBook);
+            var deleteBookResponse = Delete<BooleanCommandResult>(bookId, Resources.DeleteBook);
 
             // Check the status code 
             // Does delete book but test fails because the status code is 200, not 204
