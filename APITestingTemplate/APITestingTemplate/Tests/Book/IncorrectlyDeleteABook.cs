@@ -12,6 +12,7 @@ namespace APITestingTemplate.Tests.Books
 {
     public class IncorrectlyDeleteABook : ApiTestsBase
     {
+        [Trait("Category", "Not Core")]
         [Fact]
         public void Scenario_As_a_user_I_cannot_delete_a_book_that_does_not_exist()
         {

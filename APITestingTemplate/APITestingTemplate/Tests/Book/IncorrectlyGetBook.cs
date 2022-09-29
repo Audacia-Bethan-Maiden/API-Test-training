@@ -11,6 +11,7 @@ namespace APITestingTemplate.Tests.Books
 {
     public class IncorrectlyGetBook : ApiTestsBase
     {
+        [Trait("Category", "Not Core")]
         [Fact]
         public void Scenario_3_As_a_user_I_cannot_get_a_single_book_if_I_use_an_Id_that_does_not_exist()
         {

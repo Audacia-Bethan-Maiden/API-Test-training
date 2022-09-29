@@ -18,6 +18,8 @@ namespace APITestingTemplate.Tests.BookCategory
         {
             _addCategoryFixture = addCategoryFixture;
         }
+
+        [Trait("Category", "Core")]
         [Fact]
         public void Scenario_As_a_user_I_can_update_the_name_of_a_book_category()
         {
@@ -27,7 +29,6 @@ namespace APITestingTemplate.Tests.BookCategory
             // Set update book category request
             var updateCategoryRequest = SetupWithoutSave<UpdateBookCategoryRequest>();
             updateCategoryRequest.Id = bookCategoryId;
-            updateCategoryRequest.Name = "New";
 
             // Call the API 
             var updateBookCategoryResponse =

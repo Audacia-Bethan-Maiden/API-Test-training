@@ -16,7 +16,6 @@ namespace APITestingTemplate.Helpers
         {
             // Set up the request to add the category
             var addCategoryRequest = SetupWithoutSave<AddBookCategoryRequest>();
-            addCategoryRequest.Name = Random.Words(2);
 
             // Call the API to add the category
             var addCategoryResponse =

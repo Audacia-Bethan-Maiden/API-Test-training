@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Net;
+using APITestingTemplate.DataSetup.Customizations.Books;
 using APITestingTemplate.Models.CombinedDtos;
 using APITestingTemplate.Models.Dtos;
 using Audacia.Random.Extensions;
@@ -29,12 +30,6 @@ namespace APITestingTemplate.Helpers
 
             // Set the book category Id and generate other details
             addBookRequest.BookCategoryId = bookCategoryId;
-            addBookRequest.Title = Random.Words(2);
-            addBookRequest.Description = Random.Sentence();
-            addBookRequest.Author = Random.Forename() + ' ' + Random.Surname();
-            addBookRequest.PublishedYear = 1982;
-            addBookRequest.HasEBook = true;
-            addBookRequest.AvailableFrom = new DateTime(2022, 03, 20);
 
             // Send the request to add the book
             var addBookResponse =
@@ -58,6 +53,45 @@ namespace APITestingTemplate.Helpers
                     }
                 }
             };
+        }
+
+        public AddBookAndCategoryData CreateBookWithoutEBook(int bookCategoryId, string bookCategoryName)
+        {
+            // Set up the request to add the book
+            var addBookRequest = SetupWithoutSave<AddBookRequest>(new AddBookWithoutEBook());
+
+            // Set the book category Id and generate other details
+            addBookRequest.BookCategoryId = bookCategoryId;
+
+            // Send the request to add the book
+            var addBookResponse =
+                Post<GetBookDtoCommandResult>(addBookRequest, Resources.AddBook, null);
+            // Check the correct response is returned
+            addBookResponse.StatusCode.Should().Be(HttpStatusCode.Created);
+
+            //Return the book values as the GetBookDto
+            return new AddBookAndCategoryData()
+            {
+                BookData = new List<GetBookDto>()
+                {
+                    addBookResponse.Data.Output
+                },
+                BookCategoryData = new List<GetBookCategoryDto>()
+                {
+                    new GetBookCategoryDto()
+                    {
+                        Name = bookCategoryName,
+                        Id = bookCategoryId
+                    }
+                }
+            };
+        }
+
+        public AddBookAndCategoryData AddBookWithNewCategoryAndNoEBook()
+        {
+            var bookCategory = _bookCategoryHelper.AddBookCategory();
+
+            return CreateBookWithoutEBook(bookCategory.Id, bookCategory.Name);
         }
 
         public AddBookAndCategoryData AddBookWithNewCategory()

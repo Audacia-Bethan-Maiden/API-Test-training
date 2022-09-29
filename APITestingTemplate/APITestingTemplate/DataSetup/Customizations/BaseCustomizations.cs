@@ -1,5 +1,6 @@
 ﻿using System;
 using APITestingTemplate.Models.Dtos;
+using APITestingTemplate.Tests.BookCategory;
 using Audacia.Random.Extensions;
 using Audacia.Testing.Api.DataSetup;
 using AutoFixture;
@@ -20,6 +21,12 @@ namespace APITestingTemplate.DataSetup.Customizations
 
             fixture.Register(() => 
                 UpdateBook(fixture).Create());
+
+            fixture.Register(()=> 
+                AddBookCategory(fixture).Create());
+
+            fixture.Register(() => 
+                UpdateBookCategory(fixture).Create());
         }
 
         protected virtual IPostprocessComposer<AddBookRequest> AddBooks(IFixture fixture)
@@ -44,6 +51,18 @@ namespace APITestingTemplate.DataSetup.Customizations
                 .With(dto => dto.PublishedYear, () => 1999)
                 .With(dto => dto.HasEBook, () => true)
                 .With(dto => dto.BookCategoryId, () => 2);
+        }
+
+        protected virtual IPostprocessComposer<AddBookCategoryRequest> AddBookCategory(IFixture fixture)
+        {
+            return fixture.Build<AddBookCategoryRequest>()
+                .With(dto => dto.Name, () => Random.Words(2));
+        }
+
+        protected virtual IPostprocessComposer<UpdateBookCategoryRequest> UpdateBookCategory(IFixture fixture)
+        {
+            return fixture.Build<UpdateBookCategoryRequest>()
+                .With(dto => dto.Name, () => Random.Words(2));
         }
     }
 }

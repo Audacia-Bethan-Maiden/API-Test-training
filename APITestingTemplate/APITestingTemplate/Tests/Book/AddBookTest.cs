@@ -44,12 +44,12 @@ namespace APITestingTemplate.Tests.Books
             addBookResponse.StatusCode.Should().Be(HttpStatusCode.Created);
 
             // Check the output
-            addBookResponse.Data.Output.Title.Should().Be(newBookRequest.Title);
-            addBookResponse.Data.Output.Description.Should().Be(newBookRequest.Description);
-            addBookResponse.Data.Output.Author.Should().Be(newBookRequest.Author);
-            addBookResponse.Data.Output.PublishedYear.Should().Be(newBookRequest.PublishedYear);
-            addBookResponse.Data.Output.AvailableFrom.Should().Be(newBookRequest.AvailableFrom);
-            addBookResponse.Data.Output.HasEBook.Should().Be((bool)newBookRequest.HasEBook);
+            addBookResponse.Data?.Output.Title.Should().Be(newBookRequest.Title);
+            addBookResponse.Data?.Output.Description.Should().Be(newBookRequest.Description);
+            addBookResponse.Data?.Output.Author.Should().Be(newBookRequest.Author);
+            addBookResponse.Data?.Output.PublishedYear.Should().Be(newBookRequest.PublishedYear);
+            addBookResponse.Data?.Output.AvailableFrom.Should().Be(newBookRequest.AvailableFrom);
+            addBookResponse.Data?.Output.HasEBook.Should().Be((bool)newBookRequest.HasEBook);
 
             // Delete the book
             var bookId = addBookResponse.Data.Output.Id;

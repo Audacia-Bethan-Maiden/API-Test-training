@@ -17,6 +17,7 @@ namespace APITestingTemplate.Tests.BookCategory
         {
             _addCategoryFixture = addCategoryFixture;
         }
+        [Trait("Category", "Core")]
         [Fact]
         public void Scenario_7_As_a_user_I_can_get_a_book_category()
         {

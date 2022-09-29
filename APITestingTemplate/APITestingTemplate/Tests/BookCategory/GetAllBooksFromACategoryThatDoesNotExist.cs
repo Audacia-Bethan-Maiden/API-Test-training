@@ -14,6 +14,7 @@ namespace APITestingTemplate.Tests.BookCategory
 {
     public class GetAllBooksFromACategoryThatDoesNotExist : ApiTestsBase
     {
+        [Trait("Category", "Not Core")]
         [Fact]
         public void Scenario_As_a_user_I_can_get_all_books_from_a_category_that_does_not_exist()
         {

@@ -12,6 +12,8 @@ namespace APITestingTemplate.Tests.BookCategory
 {
     public class IncorrectlyAddABookCategory : ApiTestsBase
     {
+
+        [Trait("Category", "Core")]
         [Fact]
         public void Scenario_As_a_user_I_cannot_add_a_book_category_if_I_do_not_include_the_name_of_the_category()
         {

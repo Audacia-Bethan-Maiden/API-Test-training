@@ -21,6 +21,7 @@ namespace APITestingTemplate.Tests.BookCategory
         {
             _addCategoryFixture = addCategoryFixture;
         }
+        [Trait("Category", "Not Core")]
         [Fact]
         public void Scenario_As_a_user_I_cannot_update_a_book_category_if_I_do_not_include_the_category_Id()
         {
@@ -28,8 +29,7 @@ namespace APITestingTemplate.Tests.BookCategory
             var bookCategoryData = _addCategoryFixture.BookCategoryData;
 
             // Set update book category request
-            var updateCategoryRequest = new UpdateBookCategoryRequest();
-            updateCategoryRequest.Name = Random.Words(2);
+            var updateCategoryRequest = SetupWithoutSave<UpdateBookCategoryRequest>();
 
             // Call the API 
             var updateBookCategoryResponse =
@@ -45,6 +45,8 @@ namespace APITestingTemplate.Tests.BookCategory
             // Check the name of the category has not changed
             getCategoryResponse.Data.Output.Name.Should().Be(bookCategoryData.Name);
         }
+
+        [Trait("Category", "Core")]
         [Fact]
         public void Scenario_As_a_user_I_cannot_update_a_book_category_if_I_do_not_include_the_new_category_name()
         {

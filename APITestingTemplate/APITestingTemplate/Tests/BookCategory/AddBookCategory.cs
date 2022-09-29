@@ -20,12 +20,13 @@ namespace APITestingTemplate.Tests.BookCategory
         {
             _bookCategoryHelper = new BookCategoryHelper();
         }
+
+        [Trait("Category", "Core")]
         [Fact]
         public void Scenario_As_a_user_I_can_add_a_book_category()
         {
             // Set up details for the book category you want to add
             var bookCategoryRequest = SetupWithoutSave<AddBookCategoryRequest>();
-            bookCategoryRequest.Name = Random.Words(2);
 
             // Call the API
             var addCategoryResponse =

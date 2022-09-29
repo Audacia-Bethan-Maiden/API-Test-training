@@ -18,6 +18,8 @@ namespace APITestingTemplate.Tests.BookCategory
         {
             _addCategoryWithoutDeleteFixture = addCategoryWithoutDeleteFixture;
         }
+
+        [Trait("Category", "Core")]
         [Fact]
         public void Scenario_As_a_user_I_can_delete_a_book_category()
         {

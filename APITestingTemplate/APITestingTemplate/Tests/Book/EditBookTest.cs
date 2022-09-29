@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Net;
+using APITestingTemplate.DataSetup.Customizations.Books;
 using APITestingTemplate.Fixtures;
 using APITestingTemplate.Helpers;
 using APITestingTemplate.Models.Dtos;
@@ -11,13 +12,13 @@ using Xunit;
 
 namespace APITestingTemplate.Tests.Books
 {
-    public class EditBookTest : ApiTestsBase, IClassFixture<AddBookAndCategoryFixture>
+    public class EditBookTest : ApiTestsBase, IClassFixture<AddBookWithoutEBookAndWithCategoryFixture>
     {
-        private readonly AddBookAndCategoryFixture _addBookAndCategoryFixture;
+        private readonly AddBookWithoutEBookAndWithCategoryFixture _addBookWithoutEBookAndWithCategoryFixture;
 
-        public EditBookTest(AddBookAndCategoryFixture addBookAndCategoryFixture)
+        public EditBookTest(AddBookWithoutEBookAndWithCategoryFixture addAddBookWithoutEBookAndWithCategoryFixture)
         {
-            _addBookAndCategoryFixture = addBookAndCategoryFixture;
+            _addBookWithoutEBookAndWithCategoryFixture = addAddBookWithoutEBookAndWithCategoryFixture;
         }
 
         [Trait("Category", "Core")]
@@ -25,10 +26,10 @@ namespace APITestingTemplate.Tests.Books
         public void Scenario_9_As_a_user_I_can_edit_a_book()
         {
             // Get book details
-            var bookDetails = _addBookAndCategoryFixture.BookData.BookData;
+            var bookDetails = _addBookWithoutEBookAndWithCategoryFixture.BookData.BookData;
             var bookId = bookDetails.First().Id;
 
-            var editBookRequest = SetupWithoutSave<UpdateBookRequest>();
+            var editBookRequest = SetupWithoutSave<UpdateBookRequest>(new EditABookToHaveAnEBook());
             editBookRequest.Id = bookId;
             editBookRequest.BookCategoryId = bookDetails.First().BookCategoryId;
 
@@ -42,6 +43,7 @@ namespace APITestingTemplate.Tests.Books
             editBookResponse.Data?.Output.Title.Should().Be(editBookRequest.Title);
             editBookResponse.Data?.Output.Description.Should().Be(editBookRequest.Description);
             editBookResponse.Data?.Output.PublishedYear.Should().Be(editBookRequest.PublishedYear);
+            editBookResponse.Data?.Output.HasEBook.Should().Be((bool)editBookRequest.HasEBook);
         }
     }
 }

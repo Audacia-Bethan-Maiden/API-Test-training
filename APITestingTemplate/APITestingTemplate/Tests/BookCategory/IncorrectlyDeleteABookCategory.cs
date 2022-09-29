@@ -12,6 +12,7 @@ namespace APITestingTemplate.Tests.BookCategory
 {
     public class IncorrectlyDeleteABookCategory : ApiTestsBase
     {
+        [Trait("Category", "Core")]
         [Fact]
         public void Scenario_As_a_user_I_cannot_delete_a_book_category_if_I_use_the_Id_of_a_book_category_that_does_not_exist()
         {
